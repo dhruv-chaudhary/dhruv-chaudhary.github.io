@@ -1,0 +1,13 @@
+.navbar-default {
+    background-color: #222;
+    color: #EEE;
+    border-color: #666;
+}
+.navbar-default .navbar-brand {
+    color: inherit;
+}
+
+.navbar-default button {
+    border: none;
+    color: #EEE;
+}

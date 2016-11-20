@@ -1,0 +1,126 @@
+<div class="row" id="info-boxes-container">
+    <div data-ng-repeat="infoBox in infoBoxes" class="col-xs-12 col-sm-6 col-md-3 info-box">
+        <div class="well">
+            <h4>{{ infoBox.title }}</h4>
+            <h4>{{ infoBox.value }}</h4>
+            <p><small>{{ infoBox.footer }}</small></p>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">Add a new transaction</div>
+            <div class="panel-body">
+                <form class="form-horizontal" data-ng-submit="submitNewTransaction()">
+                    <div class="form-group">
+                        <label for="category" class="col-sm-3 control-label">Category</label>
+                        <div class="col-sm-9">
+                            <select id="categpry" ng-options="category as category.name for category in categories track by category.id" data-ng-model="selectedCategory"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="date" class="col-sm-3 control-label">Date</label>
+                        <div class="col-sm-9">
+                            <input type="date" class="form-control" id="date" data-ng-model="txn.date" placeholder="Date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount" class="col-sm-3 control-label">Amount</label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control" id="amount" data-ng-model="txn.amount" placeholder="Amount">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <button type="submit" class="btn btn-default">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">Summary for this month</div>
+            <div class="panel-body">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="e in currentMonthSummary.categoryWiseExpenditure">
+                            <td>{{ e.categoryName }}</td>
+                            <td>{{e.total | currency : "&#8377;" }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="panel-footer">
+                Total: {{ currentMonthSummary.total | currency : "&#8377;" }}
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Undelivered orders
+                <button class="pull-right" data-ng-click="refreshOrderStatus()">Refresh</button>
+            </div>
+            <div class="panel-body">
+                <div data-ng-repeat="order in orders">
+                    <div class="product-image">
+                        <img data-ng-src="{{ order.productImageUrl }}">
+                    </div>
+                    <div class="order-details">
+                        <p>{{ order.productName }}</p>
+                        <p>{{ order.vendor }}</p>
+                        <p>{{ order.currentStatus }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">Track a new order</div>
+            <div class="panel-body">
+                <form class="form-horizontal" data-ng-submit="submitNewOrder()">
+                    <div class="form-group">
+                        <label for="vendor" class="col-sm-3 control-label">Vendor</label>
+                        <div class="col-sm-9">
+                            <select id="vendor" ng-options="vendor as vendor.name for vendor in vendors track by vendor.id" data-ng-model="selectedVendor"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="productName" class="col-sm-3 control-label">Product Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="productName" data-ng-model="order.productName" placeholder="Product Name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="productImgUrl" class="col-sm-3 control-label">Product Image URL</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="productImgUrl" data-ng-model="order.productImgUrl" placeholder="Product Image URL">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="trackingUrl" class="col-sm-3 control-label">Tracking URL</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="trackingUrl" data-ng-model="order.trackingUrl" placeholder="Tracking URL">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <button type="submit" class="btn btn-default">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

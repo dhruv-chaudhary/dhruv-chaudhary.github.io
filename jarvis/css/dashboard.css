@@ -1,0 +1,30 @@
+.product-image {
+    float: left;
+    height: 100px;
+    width: 100px;
+    overflow: hidden;
+    box-shadow: 0 0 1px #AAA;
+    margin-right: 10px;
+}
+
+.product-image > img {
+    max-height: 100%;
+    max-width: 100%;
+    margin: auto;
+    display: block;
+}
+
+.order-details {
+    padding-left: 10px;
+}
+.info-box {
+    background: #444;
+}
+
+.info-box h4 {
+    margin: 0;
+}
+
+.info-box p {
+    margin: 0;
+}
