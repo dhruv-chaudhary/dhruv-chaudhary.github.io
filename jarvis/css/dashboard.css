@@ -78,6 +78,10 @@
     background: #494b54;
 }
 
+.panel-default input[type=date] {
+    -webkit-appearance: none;
+}
+
 .panel-default button {
     border: 1px solid #949ba2;
 }
