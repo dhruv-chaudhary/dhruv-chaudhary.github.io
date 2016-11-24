@@ -65,6 +65,7 @@
 .panel-default select {
     width: 100%;
     height: 34px;
+    -webkit-appearance:none;
     padding: 6px;
 }
 
