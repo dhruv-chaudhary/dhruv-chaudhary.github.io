@@ -80,6 +80,7 @@
 
 .panel-default input[type=date] {
     -webkit-appearance: none;
+    height: 34px;
 }
 
 .panel-default button {
