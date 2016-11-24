@@ -2,6 +2,7 @@
     background-color: #222;
     color: #EEE;
     border-color: #666;
+    transition: all ease 1s;
 }
 .navbar-default .navbar-brand {
     color: inherit;

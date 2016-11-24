@@ -8,7 +8,7 @@ jarvisApp.config(function($routeProvider) {
         })
         .otherwise({
             templateUrl: "partials/404.htm"
-        })
+        });
 });
 
 jarvisApp.controller("menuCtrl", function($scope) {
@@ -21,12 +21,22 @@ jarvisApp.controller("menuCtrl", function($scope) {
             $scope.menuStatus = "collapse";
         }
     }
+    
+    $scope.menuItems = [
+        {
+            name: "Bank Accounts",
+            link: "/bankaccounts"
+        }, {
+            name: "Expenditure Categories",
+            link: "/expenditurecategories"
+        }
+    ];
 });
 
 jarvisApp.controller("dashboardCtrl", function($scope, $http, config) {
     $scope.infoBoxes = [
         {
-            title: "Bank Balances",
+            title: "Net Bank Balance",
             value: "5346876",
             footer: "Last updated: 20/11/2016"
         }
@@ -90,7 +100,7 @@ jarvisApp.controller("dashboardCtrl", function($scope, $http, config) {
             .then(function(response) {
                 alert("Done: " + response);
         });
-    }
+    };
 
     $scope.submitNewOrder = function() {
         $scope.order.vendorId = $scope.selectedVendor.id;
@@ -99,6 +109,6 @@ jarvisApp.controller("dashboardCtrl", function($scope, $http, config) {
             .then(function(response) {
                 alert("Done: " + response);
         });
-    }
+    };
 
 });
