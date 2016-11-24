@@ -33,11 +33,15 @@ jarvisApp.controller("menuCtrl", function($scope) {
     ];
 });
 
-jarvisApp.controller("dashboardCtrl", function($scope, $http, config) {
+jarvisApp.controller("dashboardCtrl", function($scope, $http, config, $filter) {
+    
+    $scope.txnSaved = false;
+    $scope.txnSaving = false;
+    
     $scope.infoBoxes = [
         {
             title: "Net Bank Balance",
-            value: "5346876",
+            value: $filter("currency")("5346876", "\u20B9 ", 0),
             footer: "Last updated: 20/11/2016"
         }
     ];
@@ -93,12 +97,14 @@ jarvisApp.controller("dashboardCtrl", function($scope, $http, config) {
     }
 
     $scope.submitNewTransaction = function() {
+        $scope.txnSaving = true;
         $scope.txn.type = "debit";
         $scope.txn.categoryId = $scope.selectedCategory.id;
         $http
             .post(config.baseUrl + "/transactions", $scope.txn)
             .then(function(response) {
-                alert("Done: " + response);
+                $scope.txnSaving = false;
+                $scope.txnSaved = true;
         });
     };
 

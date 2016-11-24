@@ -1,11 +1,14 @@
 .navbar-default {
-    background-color: #222;
+    background-color: #fff;
     color: #EEE;
-    border-color: #666;
     transition: all ease 1s;
+    border-color: #fff;
 }
+
 .navbar-default .navbar-brand {
+    letter-spacing: 1.3em;
     color: inherit;
+    background-color: #f6a821;
 }
 
 .navbar-default button {

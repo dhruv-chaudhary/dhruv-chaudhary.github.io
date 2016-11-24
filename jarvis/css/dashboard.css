@@ -3,8 +3,8 @@
     height: 100px;
     width: 100px;
     overflow: hidden;
-    box-shadow: 0 0 1px #AAA;
     margin-right: 10px;
+    background: #fff;
 }
 
 .product-image > img {
@@ -18,10 +18,88 @@
     padding-left: 10px;
 }
 
+.info-box > .well {
+    background: #44464f;
+    border: none;
+    color: #fff;
+    display: block;
+}
+
 .info-box h4 {
     margin: 0;
+    padding-bottom: 10px;
 }
 
 .info-box p {
     margin: 0;
+}
+
+.info-box-value {
+    font-size: 3em;
+}
+
+.info-box-details {
+    color: #949ba2;
+}
+
+.panel-default,
+.panel-default > .panel-heading,
+.panel-default > .panel-footer {
+    background-color: #44464f;
+    color: #fff;
+    border: none;
+}
+
+.panel-default > .panel-heading {
+    border-bottom: 1px solid #333;
+}
+
+.panel-default > .panel-footer {
+    border-top: 1px solid #333;
+}
+
+.panel-heading h4 {
+    margin: 0 auto;
+}
+
+.panel-default select {
+    width: 100%;
+    height: 34px;
+    padding: 6px;
+}
+
+.panel-default input,
+.panel-default button,
+.panel-default select {
+    color: #949ba2;
+    outline: none;
+    border: none;
+    background: #494b54;
+}
+
+.panel-default button {
+    border: 1px solid #949ba2;
+}
+
+.panel-default table td,
+.panel-default table th {
+    padding: 6px 10px;
+}
+
+.panel-default table th {
+    background-color: #494b54;
+}
+
+.panel-default table {
+    width: 100%;
+}
+
+.save-successful-msg {
+    padding-left: 20px;
+    color: #449d44;
+}
+
+.saving-msg {
+    padding-left: 20px;
+    color: #f6a821;
 }

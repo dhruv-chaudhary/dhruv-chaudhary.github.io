@@ -1,17 +1,19 @@
 <div class="row" id="info-boxes-container">
     <div data-ng-repeat="infoBox in infoBoxes" class="col-xs-12 col-sm-6 col-md-3 info-box">
-        <div class="well">
-            <h4>{{ infoBox.title }}</h4>
-            <h4>{{ infoBox.value }}</h4>
-            <p><small>{{ infoBox.footer }}</small></p>
-        </div>
+        <a href="#" class="well">
+            <p class="info-box-value">{{ infoBox.value }}</p>
+            <h4 class="info-box-details">{{ infoBox.title }}</h4>
+            <p class="info-box-details">{{ infoBox.footer }}</p>
+        </a>
     </div>
 </div>
 
 <div class="row">
     <div class="col-xs-12 col-sm-6">
         <div class="panel panel-default">
-            <div class="panel-heading">Add a new transaction</div>
+            <div class="panel-heading">
+                <h4>Add a new transaction</h4>
+            </div>
             <div class="panel-body">
                 <form class="form-horizontal" data-ng-submit="submitNewTransaction()">
                     <div class="form-group">
@@ -35,6 +37,8 @@
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-9">
                             <button type="submit" class="btn btn-default">Save</button>
+                            <span data-ng-show="txnSaving" class="saving-msg">Saving...</span>
+                            <span data-ng-show="txnSaved" class="save-successful-msg">&#10004;&nbsp;&nbsp;&nbsp;Saved</span>
                         </div>
                     </div>
                 </form>
