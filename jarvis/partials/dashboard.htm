@@ -23,6 +23,12 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="payment-source" class="col-sm-3 control-label">Payment Source</label>
+                        <div class="col-sm-9">
+                            <select id="payment-source" ng-options="paymentSource as paymentSource.name for paymentSource in paymentSources track by paymentSource.id" data-ng-model="selectedPaymentSource"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="date" class="col-sm-3 control-label">Date</label>
                         <div class="col-sm-9">
                             <input type="date" class="form-control" id="date" data-ng-model="txn.date" placeholder="Date">

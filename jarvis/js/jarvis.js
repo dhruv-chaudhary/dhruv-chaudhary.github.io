@@ -38,13 +38,7 @@ jarvisApp.controller("dashboardCtrl", function($scope, $http, config, $filter) {
     $scope.txnSaved = false;
     $scope.txnSaving = false;
     
-    $scope.infoBoxes = [
-        {
-            title: "Net Bank Balance",
-            value: $filter("currency")("5346876", "\u20B9 ", 0),
-            footer: "Last updated: 20/11/2016"
-        }
-    ];
+    $scope.infoBoxes = new Array();
     
     $scope.txn = {
         date: new Date()
@@ -58,9 +52,33 @@ jarvisApp.controller("dashboardCtrl", function($scope, $http, config, $filter) {
             }, function() {
             }
     );
+    
+    $http
+        .get(config.baseUrl + "/bankaccounts/summary")
+        .then(
+            function(response) {
+                var lastUpdated = new Date(response.data.lastUpdated);
+                var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                $scope.infoBoxes.push({
+                        title: "Net Bank Balance",
+                        value: $filter("currency")(response.data.totalBalance, "\u20B9 ", 0),
+                        footer: "Last updated: " + $filter("date")(lastUpdated)
+                    })
+            }, function() {
+            }
+    );
+    
+    $http
+        .get(config.baseUrl + "/paymentsources")
+        .then(
+            function(response) {
+                $scope.paymentSources = response.data;
+            }, function() {
+            }
+    );
 
     $http
-        .get(config.baseUrl + "/orders/vendors")
+        .get(config.baseUrl + "/orders/shippers")
         .then(
             function(response) {
                 $scope.vendors = response.data;
@@ -100,6 +118,7 @@ jarvisApp.controller("dashboardCtrl", function($scope, $http, config, $filter) {
         $scope.txnSaving = true;
         $scope.txn.type = "debit";
         $scope.txn.categoryId = $scope.selectedCategory.id;
+        $scope.txn.paymentSource = $scope.selectedPaymentSource.id;
         $http
             .post(config.baseUrl + "/transactions", $scope.txn)
             .then(function(response) {
@@ -109,7 +128,7 @@ jarvisApp.controller("dashboardCtrl", function($scope, $http, config, $filter) {
     };
 
     $scope.submitNewOrder = function() {
-        $scope.order.vendorId = $scope.selectedVendor.id;
+        $scope.order.shipperId = $scope.selectedVendor.id;
         $http
             .post(config.baseUrl + "/orders", $scope.order)
             .then(function(response) {
