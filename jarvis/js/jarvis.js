@@ -6,6 +6,10 @@ jarvisApp.config(function($routeProvider) {
             templateUrl: "partials/dashboard.htm",
             controller: "dashboardCtrl"
         })
+        .when("/monthlysummary", {
+            templateUrl: "partials/monthlysummary.htm",
+            controller: "monthlysummaryCtrl"
+        })
         .otherwise({
             templateUrl: "partials/404.htm"
         });
@@ -25,10 +29,13 @@ jarvisApp.controller("menuCtrl", function($scope) {
     $scope.menuItems = [
         {
             name: "Bank Accounts",
-            link: "/bankaccounts"
+            link: "/#/bankaccounts"
         }, {
             name: "Expenditure Categories",
-            link: "/expenditurecategories"
+            link: "/#/expenditurecategories"
+        }, {
+            name: "Monthly Summary",
+            link: "/#/monthlysummary"
         }
     ];
 });
@@ -136,4 +143,16 @@ jarvisApp.controller("dashboardCtrl", function($scope, $http, config, $filter) {
         });
     };
 
+});
+
+jarvisApp.controller("monthlysummaryCtrl", function($scope, $http, config) {
+    $http
+        .get(config.baseUrl + "/summary/monthly")
+        .then(
+            function(response) {
+                $scope.monthlySummary = response.data;
+            }, function(error) {
+                alert("Error fetching data" + error);
+            }
+    );
 });

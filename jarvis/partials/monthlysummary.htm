@@ -1,0 +1,28 @@
+<div id="monthly-summary-container">
+    <div data-ng-repeat="summary in monthlySummary" class="row">
+        <div class="col-xs-12 col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">{{summary.month}}, {{summary.year}}</div>
+                <div class="panel-body">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th style="width: 30%">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-ng-repeat="e in summary.categoryWiseExpenditure">
+                                <td>{{ e.categoryName }}</td>
+                                <td>{{e.total | currency : "&#8377;" }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="panel-footer">
+                    Total: {{ summary.total | currency : "&#8377;" }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
