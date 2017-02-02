@@ -29,13 +29,13 @@ jarvisApp.controller("menuCtrl", function($scope) {
     $scope.menuItems = [
         {
             name: "Bank Accounts",
-            link: "/#/bankaccounts"
+            link: "#/bankaccounts"
         }, {
             name: "Expenditure Categories",
-            link: "/#/expenditurecategories"
+            link: "#/expenditurecategories"
         }, {
             name: "Monthly Summary",
-            link: "/#/monthlysummary"
+            link: "#/monthlysummary"
         }
     ];
 });
